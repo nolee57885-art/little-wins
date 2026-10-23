@@ -1,0 +1,79 @@
+
+/* The basic look of our page */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* Main app container */
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #9ca3af;
+  margin-bottom: 32px;
+}
+
+/* Habit cards */
+.habit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1f2937;
+  padding: 18px;
+  margin: 12px 0;
+  border-radius: 14px;
+  border: 1px solid #374151;
+  font-size: 16px;
+}
+
+/* Make checkboxes easier to see */
+.habit input {
+  width: 18px;
+  height: 18px;
+  accent-color: #86efac;
+}
+
+/* Progress area */
+.progress-card {
+  background: #1f2937;
+  padding: 20px;
+  margin: 28px 0;
+  border-radius: 16px;
+}
+
+.progress-track {
+  height: 10px;
+  background: #374151;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #86efac;
+  border-radius: 20px;
+}
+
+footer {
+  margin-top: 32px;
+  color: #9ca3af;
+  text-align: center;
+  font-size: 14px;
+}
