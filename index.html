@@ -4,29 +4,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>Little Wins | Habit Tracker</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>🌱 Little Wins</h1>
-  <p>Small steps, big changes.</p>
+  <main class="container">
+    <h1>🌱 Little Wins</h1>
+    <p class="subtitle">Small steps, big changes.</p>
 
-  <h2>My Daily Habits</h2>
+    <section class="progress-card">
+      <h2>Today's Progress</h2>
+      <p><span id="completed">0</span> of 10 habits completed</p>
 
-  <ul>
-<li> No phone 90 min after waking up</li>
-  <li>Sun on face and shower</li>
-    <li>Read for 20 minutes</li>
-    <li>Drink water</li>
-  <li>Meditate and breath work</li>
-  <li>Create: Content or write or edit or sketch</li>
-    <li>Exercise</li>
-  <li>Oral care x 2 </li>
-  <li>Language practise</li>
-    <li>Practise coding</li>
-  </ul>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </section>
 
-  <p>Every little win counts!</p>
+    <h2>My Daily Habits</h2>
+
+    <label class="habit">
+      <input type="checkbox">
+      No phone 90 min after waking up
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Sun on face and shower
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Read for 20 minutes
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Drink water
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Meditate and breath work
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Create: Content or write or edit or sketch
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Exercise
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Oral care x 2
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Language practice
+    </label>
+
+    <label class="habit">
+      <input type="checkbox">
+      Practise coding
+    </label>
+
+    <footer>Every little win counts! 🌱</footer>
+  </main>
 </body>
 </html>
