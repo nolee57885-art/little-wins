@@ -1,80 +1,179 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Little Wins | Habit Tracker</title>
+  <meta name="theme-color" content="#fff0f5">
+  <meta name="description" content="A cute little quest board for showing up for yourself, one heart at a time.">
+  <title>Quest Maxxing ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main class="container">
-    <h1>🌱 Little Wins</h1>
-    <p class="subtitle">Small steps, big changes.</p>
-
-    <section class="progress-card">
-      <h2>Today's Progress</h2>
-      <p><span id="completed">0</span> of 10 habits completed</p>
-
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill"></div>
+  <div class="page-wrap">
+    <header class="hero">
+      <div class="bow" aria-hidden="true">🎀</div>
+      <div>
+        <p class="eyebrow">a little quest board for your lovely life</p>
+        <h1>Quest <span>Maxxing</span><sup>♡</sup></h1>
+        <p class="subtitle">Tiny quests. Big main-character energy.</p>
       </div>
-    </section>
+      <div class="sparkle sparkle-one" aria-hidden="true">✧</div>
+      <div class="sparkle sparkle-two" aria-hidden="true">♡</div>
+    </header>
 
-    <h2>My Daily Habits</h2>
+    <main class="paper">
+      <div class="paper-top">
+        <span class="sticker">✿ today's little adventures ✿</span>
+        <span class="date" id="today"></span>
+      </div>
 
-    <label class="habit">
-      <input type="checkbox">
-      No phone 90 min after waking up
-    </label>
+      <section class="progress-card" aria-live="polite">
+        <div class="progress-copy">
+          <div>
+            <p class="section-kicker">YOUR DAILY MAGIC</p>
+            <h2><span id="completed">0</span> <span class="muted">/ 27 quests</span></h2>
+          </div>
+          <div class="progress-emoji" id="progress-emoji">🌷</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <p class="progress-note" id="progress-note">Every tiny win counts. Start anywhere ♡</p>
+      </section>
 
-    <label class="habit">
-      <input type="checkbox">
-      Sun on face and shower
-    </label>
+      <div class="toolbar">
+        <h2>♡ Your quests</h2>
+        <button class="reset-button" id="reset" type="button" title="Clear today's checkmarks">reset day ↻</button>
+      </div>
+      <div id="quest-groups" class="quest-groups"></div>
 
-    <label class="habit">
-      <input type="checkbox">
-      Read for 20 minutes
-    </label>
+      <footer>
+        <span>made of pink dreams & tiny wins</span>
+        <span class="footer-heart">♡</span>
+        <span>you are doing lovely, sweet thing!</span>
+      </footer>
+    </main>
+    <p class="page-note">a gentle reminder: progress, not perfection <span>✧</span></p>
+  </div>
 
-    <label class="habit">
-      <input type="checkbox">
-      Drink water
-    </label>
+  <script>
+    const quests = [
+      { name: "5 min journal", group: "morning", note: "brain dump & let it out" },
+      { name: "Affirmations", group: "morning", note: "speak kindly to yourself" },
+      { name: "Air out room", group: "morning", note: "fresh air, fresh start" },
+      { name: "Lymphatic flow exercises or yoga", group: "morning", note: "a little gentle movement" },
+      { name: "Oil pulling & tongue scraping", group: "morning", note: "slow morning ritual" },
+      { name: "Skin care and gua sha", group: "morning", note: "glow gently" },
+      { name: "Glycolic toner", group: "morning", note: "your skincare step" },
+      { name: "Make bed and catch sunlight", group: "morning", note: "make your space sunny" },
+      { name: "Shower and dress up", group: "morning", note: "get ready for your day" },
+      { name: "Water and supplements", group: "morning", note: "hydrate, lovely" },
+      { name: "Breakfast", group: "morning", note: "fuel your quests" },
+      { name: "Clean for 10 min", group: "day", note: "reset one tiny corner" },
+      { name: "90 min deep work", group: "day", note: "one focused power hour (and a half)" },
+      { name: "Shake and diaphragm breathing", group: "day", note: "shake it out & breathe" },
+      { name: "Lunch", group: "day", note: "a proper pause to refuel" },
+      { name: "Dance", group: "day", note: "main character moment" },
+      { name: "90 min study", group: "day", note: "little by little, you learn" },
+      { name: "Work out", group: "day", note: "strong feels good" },
+      { name: "No screen post 9pm", group: "evening", note: "let your brain wind down" },
+      { name: "Dry brush", group: "evening", note: "your body-care ritual" },
+      { name: "Shower", group: "evening", note: "wash the day away" },
+      { name: "Brush and floss", group: "evening", note: "pearly-white check" },
+      { name: "Stretching", group: "evening", note: "unwind those muscles" },
+      { name: "Legs on wall", group: "evening", note: "a few quiet minutes" },
+      { name: "5 min journal", group: "evening", note: "close the day with kindness" },
+      { name: "Read", group: "evening", note: "a few pages before bed" },
+      { name: "Night guard", group: "evening", note: "then off to dreamland" }
+    ];
 
-    <label class="habit">
-      <input type="checkbox">
-      Meditate and breath work
-    </label>
+    const sections = [
+      { id: "morning", title: "Morning glow", icon: "☀️", subtitle: "ease into your day" },
+      { id: "day", title: "Daytime quests", icon: "🦢", subtitle: "little steps, lovely focus" },
+      { id: "evening", title: "Evening wind-down", icon: "🌙", subtitle: "soft landing into sleep" }
+    ];
 
-    <label class="habit">
-      <input type="checkbox">
-      Create: Content or write or edit or sketch
-    </label>
+    const todayKey = new Date().toLocaleDateString("en-CA");
+    const storageKey = "quest-maxxing-" + todayKey;
+    let completed = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+    const list = document.getElementById("quest-groups");
 
-    <label class="habit">
-      <input type="checkbox">
-      Exercise
-    </label>
+    document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, {
+      weekday: "long", month: "long", day: "numeric"
+    });
 
-    <label class="habit">
-      <input type="checkbox">
-      Oral care x 2
-    </label>
+    sections.forEach(section => {
+      const group = document.createElement("section");
+      group.className = "quest-section";
+      const heading = document.createElement("div");
+      heading.className = "group-heading";
+      heading.innerHTML = '<span class="group-icon">' + section.icon + '</span><div><h3>' + section.title + '</h3><p>' + section.subtitle + '</p></div><span class="group-count" id="count-' + section.id + '"></span>';
+      const items = document.createElement("div");
+      items.className = "quest-list";
 
-    <label class="habit">
-      <input type="checkbox">
-      Language practice
-    </label>
+      quests.forEach((quest, index) => {
+        if (quest.group !== section.id) return;
+        const label = document.createElement("label");
+        label.className = "quest";
+        label.dataset.index = index;
+        label.innerHTML = '<input type="checkbox" aria-label="Complete ' + quest.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"><span class="heart" aria-hidden="true">♡</span><span class="quest-copy"><span class="quest-name"></span><span class="quest-note"></span></span><span class="tiny-sparkle" aria-hidden="true">✧</span>';
+        label.querySelector(".quest-name").textContent = quest.name;
+        label.querySelector(".quest-note").textContent = quest.note;
+        const checkbox = label.querySelector("input");
+        checkbox.checked = completed.has(index);
+        label.classList.toggle("is-done", checkbox.checked);
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) completed.add(index);
+          else completed.delete(index);
+          label.classList.toggle("is-done", checkbox.checked);
+          save();
+        });
+        items.appendChild(label);
+      });
 
-    <label class="habit">
-      <input type="checkbox">
-      Practise coding
-    </label>
+      group.append(heading, items);
+      list.appendChild(group);
+    });
 
-    <footer>Every little win counts! 🌱</footer>
-  </main>
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify([...completed]));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const total = quests.length;
+      const count = completed.size;
+      document.getElementById("completed").textContent = count;
+      document.getElementById("progress-fill").style.width = (count / total * 100) + "%";
+      document.getElementById("progress-note").textContent =
+        count === total ? "ALL QUESTS CLEARED! You absolute star ✨" :
+        count === 0 ? "Every tiny win counts. Start anywhere ♡" :
+        count >= 20 ? "Look at you go!! So much lovely progress ♡" :
+        count >= 10 ? "You're on a roll, quest queen! Keep blooming 🌸" :
+        "One heart at a time. You're doing amazing ♡";
+      document.getElementById("progress-emoji").textContent =
+        count === total ? "🏆" : count >= 20 ? "🌸" : count >= 10 ? "🩷" : "🌷";
+
+      sections.forEach(section => {
+        const totalInGroup = quests.filter(q => q.group === section.id).length;
+        const doneInGroup = quests.filter((q, i) => q.group === section.id && completed.has(i)).length;
+        document.getElementById("count-" + section.id).textContent = doneInGroup + "/" + totalInGroup;
+      });
+    }
+
+    document.getElementById("reset").addEventListener("click", () => {
+      if (!completed.size || confirm("Reset all of today's quest hearts?")) {
+        completed.clear();
+        document.querySelectorAll(".quest input").forEach(input => {
+          input.checked = false;
+          input.closest(".quest").classList.remove("is-done");
+        });
+        save();
+      }
+    });
+
+    updateProgress();
+  </script>
 </body>
 </html>
