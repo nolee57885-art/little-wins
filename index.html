@@ -117,7 +117,7 @@
         const label = document.createElement("label");
         label.className = "quest";
         label.dataset.index = index;
-        label.innerHTML = '<input type="checkbox" aria-label="Complete ' + quest.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"><span class="heart" aria-hidden="true">♡</span><span class="quest-copy"><span class="quest-name"></span><span class="quest-note"></span></span><span class="tiny-sparkle" aria-hidden="true">✧</span>';
+        label.innerHTML = '<input type="checkbox" aria-label="Complete ' + quest.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"><span class="heart" aria-hidden="true"></span><span class="quest-copy"><span class="quest-name"></span><span class="quest-note"></span></span><span class="tiny-sparkle" aria-hidden="true">✧</span>';
         label.querySelector(".quest-name").textContent = quest.name;
         label.querySelector(".quest-note").textContent = quest.note;
         const checkbox = label.querySelector("input");
